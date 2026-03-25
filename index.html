@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fake Store</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Fake Store</h1>
+    <button id="cart-toggle" class="cart-btn">
+      Cart (<span id="cart-count">0</span>)
+    </button>
+  </header>
+
+  <nav id="categories">
+    <button class="cat-btn active" data-category="all">All</button>
+  </nav>
+
+  <main id="products" class="product-grid"></main>
+
+  <div id="cart-overlay" class="cart-overlay hidden">
+    <div class="cart-panel">
+      <div class="cart-header">
+        <h2>Your Cart</h2>
+        <button id="cart-close">&times;</button>
+      </div>
+      <div id="cart-items"></div>
+      <div class="cart-footer">
+        <strong>Total: $<span id="cart-total">0.00</span></strong>
+      </div>
+    </div>
+  </div>
+
+  <div id="product-modal" class="modal hidden">
+    <div class="modal-content">
+      <button id="modal-close" class="modal-close">&times;</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
