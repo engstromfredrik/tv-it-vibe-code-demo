@@ -1,0 +1,17 @@
+import { ReactNode } from 'react'
+import Sidebar from './Sidebar'
+
+interface LayoutProps {
+  children: ReactNode
+}
+
+export default function Layout({ children }: LayoutProps) {
+  return (
+    <div style={{ display: 'flex', minHeight: '100vh' }}>
+      <Sidebar />
+      <main style={{ flex: 1, padding: '32px', overflow: 'auto' }}>
+        {children}
+      </main>
+    </div>
+  )
+}
