@@ -3,41 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fredrik and Thomas Store</title>
+  <title>What's for Dinner?</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <header>
-    <h1>Fredrik and Thomas Store</h1>
-    <button id="cart-toggle" class="cart-btn">
-      Cart (<span id="cart-count">0</span>)
-    </button>
+    <h1>🍽️ What's for Dinner?</h1>
+    <p>30 delicious ideas — pick one or let us decide!</p>
   </header>
 
-  <nav id="categories">
-    <button class="cat-btn active" data-category="all">All</button>
-  </nav>
+  <div class="surprise-bar">
+    <button id="surprise-btn">🎲 Surprise Me!</button>
+  </div>
 
-  <main id="products" class="product-grid"></main>
-
-  <div id="cart-overlay" class="cart-overlay hidden">
-    <div class="cart-panel">
-      <div class="cart-header">
-        <h2>Your Cart</h2>
-        <button id="cart-close">&times;</button>
-      </div>
-      <div id="cart-items"></div>
-      <div class="cart-footer">
-        <strong>Total: $<span id="cart-total">0.00</span></strong>
-      </div>
+  <div class="filters">
+    <div class="filter-row">
+      <span class="filter-label">Category</span>
+      <div id="category-filters"></div>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">Effort</span>
+      <div id="effort-filters"></div>
+    </div>
+    <div class="fav-row">
+      <label>
+        <input type="checkbox" id="fav-toggle">
+        Show favorites only ♥
+      </label>
     </div>
   </div>
 
-  <div id="product-modal" class="modal hidden">
-    <div class="modal-content">
-      <button id="modal-close" class="modal-close">&times;</button>
-      <div id="modal-body"></div>
-    </div>
+  <div class="result-bar">
+    <span id="result-count"></span>
+  </div>
+
+  <main id="dinner-grid" class="dinner-grid"></main>
+
+  <div id="modal" class="modal hidden">
+    <div id="modal-content" class="modal-box"></div>
   </div>
 
   <script src="app.js"></script>

@@ -1,254 +1,171 @@
-const API = "https://fakestoreapi.com";
-
-// All Mountain skis from alpingaraget.se
-const alpingaragetSkis = [
-  {
-    id: "ski-1",
-    title: "Atomic Maverick 96 CTI 26/27",
-    price: 8500,
-    currency: "SEK",
-    category: "all mountain skis",
-    description: "For dig som vill ha en enda allmountainskida for hela berget. Med 96 mm i midjan levererar den tryggt kantgrepp pa hart underlag och barighet i mjukare sno. En modern plattform som kombinerar fartstabilitet med kvick respons.",
-    image: "https://www.atomic.com/on/demandware.static/-/Sites-atomic-master-catalog/default/dw0c3f0f5c/images/hi-res/AA0030286_0_K_MAVERICK_96_CTI.png"
-  },
-  {
-    id: "ski-2",
-    title: "Atomic Maverick 105 CTI 26/27",
-    price: 8900,
-    currency: "SEK",
-    category: "all mountain skis",
-    description: "Passar dig som aker avancerat till expert och vill ha en stabil allmountainskida som klarar hela berget. Med 105 mm i midjan traffar Maverick 105 CTI den moderna allmountain-sweetspotten.",
-    image: "https://www.atomic.com/on/demandware.static/-/Sites-atomic-master-catalog/default/dw5f3f0f5c/images/hi-res/AA0030288_0_K_MAVERICK_105_CTI.png"
-  },
-  {
-    id: "ski-3",
-    title: "HEAD Kore 99",
-    price: 4760,
-    currency: "SEK",
-    category: "all mountain skis",
-    description: "HEADs legendariska KORE-skidor med ny konstruktion, matt och skarning. Latta, roliga all mountain-skidor med hog prestanda. Midjebredd 99 mm ger perfekt balans mellan pist och offpist.",
-    image: "https://www.head.com/media/catalog/product/3/1/315554_LQ_2.png"
-  },
-  {
-    id: "ski-4",
-    title: "HEAD Kore 93",
-    price: 7995,
-    currency: "SEK",
-    category: "all mountain skis",
-    description: "En lattakad och responsiv allmountainskida med 93 mm midjebredd. Finns i langderna 170, 177 och 184 cm. Perfekt for den som vill ha en snabb och smidig skida bade pa och utanfor pisten.",
-    image: "https://www.head.com/media/catalog/product/3/1/315564_LQ_2.png"
-  },
-  {
-    id: "ski-5",
-    title: "Atomic Bent 90 25/26",
-    price: 5495,
-    currency: "SEK",
-    category: "all mountain skis",
-    description: "Med HRZN Tech Tip & Tail flyter Bent 90 latt i pudersno och kanns stabil och foljesam i parken. Den latta Light Woodcore-konstruktionen ger lag vikt och responsiv kansla. Kreativt DNA i en smalare midja.",
-    image: "https://www.atomic.com/on/demandware.static/-/Sites-atomic-master-catalog/default/dw0c3f0f5c/images/hi-res/AA0029468_0_K_BENT_90.png"
-  }
+const dinners = [
+  { id: 1,  name: "Spaghetti Bolognese",       category: "Pasta",          effort: "Medium", emoji: "🍝" },
+  { id: 2,  name: "Chicken Stir Fry",           category: "Asian",          effort: "Easy",   emoji: "🥢" },
+  { id: 3,  name: "Tacos",                      category: "Mexican",        effort: "Easy",   emoji: "🌮" },
+  { id: 4,  name: "Grilled Salmon",             category: "Fish",           effort: "Medium", emoji: "🐟" },
+  { id: 5,  name: "Homemade Pizza",             category: "Italian",        effort: "Medium", emoji: "🍕" },
+  { id: 6,  name: "Thai Green Curry",           category: "Asian",          effort: "Medium", emoji: "🍛" },
+  { id: 7,  name: "Cheeseburgers",              category: "American",       effort: "Easy",   emoji: "🍔" },
+  { id: 8,  name: "Caesar Salad",               category: "Salad",          effort: "Easy",   emoji: "🥗" },
+  { id: 9,  name: "Beef Stew",                  category: "Comfort",        effort: "Hard",   emoji: "🥘" },
+  { id: 10, name: "Pesto Pasta",                category: "Pasta",          effort: "Easy",   emoji: "🍃" },
+  { id: 11, name: "Shrimp Tacos",               category: "Mexican",        effort: "Easy",   emoji: "🦐" },
+  { id: 12, name: "Chicken Tikka Masala",       category: "Indian",         effort: "Medium", emoji: "🍗" },
+  { id: 13, name: "Veggie Fried Rice",          category: "Asian",          effort: "Easy",   emoji: "🍚" },
+  { id: 14, name: "BBQ Ribs",                   category: "American",       effort: "Hard",   emoji: "🍖" },
+  { id: 15, name: "Shakshuka",                  category: "Middle Eastern", effort: "Easy",   emoji: "🍳" },
+  { id: 16, name: "Falafel Bowl",               category: "Middle Eastern", effort: "Medium", emoji: "🧆" },
+  { id: 17, name: "Fish and Chips",             category: "British",        effort: "Medium", emoji: "🐠" },
+  { id: 18, name: "Lamb Kofta",                 category: "Middle Eastern", effort: "Medium", emoji: "🫙" },
+  { id: 19, name: "Ramen",                      category: "Japanese",       effort: "Medium", emoji: "🍜" },
+  { id: 20, name: "Pad Thai",                   category: "Asian",          effort: "Medium", emoji: "🥡" },
+  { id: 21, name: "Mushroom Risotto",           category: "Italian",        effort: "Hard",   emoji: "🍄" },
+  { id: 22, name: "BLT Sandwich",              category: "Quick",          effort: "Easy",   emoji: "🥪" },
+  { id: 23, name: "Grilled Veggie Wrap",        category: "Vegetarian",     effort: "Easy",   emoji: "🌯" },
+  { id: 24, name: "Stuffed Bell Peppers",       category: "Comfort",        effort: "Medium", emoji: "🫑" },
+  { id: 25, name: "Pulled Pork Sandwich",       category: "American",       effort: "Hard",   emoji: "🥩" },
+  { id: 26, name: "Lentil Soup",               category: "Vegetarian",     effort: "Easy",   emoji: "🫘" },
+  { id: 27, name: "Nachos",                     category: "Mexican",        effort: "Easy",   emoji: "🧀" },
+  { id: 28, name: "Greek Salad with Souvlaki", category: "Greek",          effort: "Easy",   emoji: "🫒" },
+  { id: 29, name: "Butter Chicken",             category: "Indian",         effort: "Medium", emoji: "🍲" },
+  { id: 30, name: "Carbonara",                  category: "Pasta",          effort: "Medium", emoji: "🥚" },
 ];
 
-let products = [];
-let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+const categories = ["All", ...new Set(dinners.map(d => d.category))];
+const efforts    = ["All", "Easy", "Medium", "Hard"];
 
-// DOM elements
-const productsEl = document.getElementById("products");
-const categoriesEl = document.getElementById("categories");
-const cartToggle = document.getElementById("cart-toggle");
-const cartClose = document.getElementById("cart-close");
-const cartOverlay = document.getElementById("cart-overlay");
-const cartItemsEl = document.getElementById("cart-items");
-const cartCountEl = document.getElementById("cart-count");
-const cartTotalEl = document.getElementById("cart-total");
-const modal = document.getElementById("product-modal");
-const modalClose = document.getElementById("modal-close");
-const modalBody = document.getElementById("modal-body");
+let favorites      = JSON.parse(localStorage.getItem("dinnerFavorites") || "[]");
+let activeCategory = "All";
+let activeEffort   = "All";
+let showFavOnly    = false;
 
-// Fetch and render products
-async function loadProducts() {
-  productsEl.innerHTML = '<div class="loading">Loading products...</div>';
-  try {
-    const res = await fetch(`${API}/products`);
-    const apiProducts = await res.json();
-    products = [...alpingaragetSkis, ...apiProducts];
-    renderProducts(products);
-  } catch (err) {
-    productsEl.innerHTML = '<div class="loading">Failed to load products.</div>';
-  }
+function saveFavorites() {
+  localStorage.setItem("dinnerFavorites", JSON.stringify(favorites));
 }
 
-// Fetch and render categories
-async function loadCategories() {
-  try {
-    const res = await fetch(`${API}/products/categories`);
-    const categories = await res.json();
-    // Add alpingaraget category first
-    ["all mountain skis", ...categories].forEach((cat) => {
-      const btn = document.createElement("button");
-      btn.className = "cat-btn";
-      btn.dataset.category = cat;
-      btn.textContent = cat;
-      btn.addEventListener("click", () => filterByCategory(cat));
-      categoriesEl.appendChild(btn);
+function toggleFavorite(id) {
+  if (favorites.includes(id)) {
+    favorites = favorites.filter(f => f !== id);
+  } else {
+    favorites.push(id);
+  }
+  saveFavorites();
+  renderCards();
+}
+
+function filteredDinners() {
+  return dinners.filter(d => {
+    if (activeCategory !== "All" && d.category !== activeCategory) return false;
+    if (activeEffort   !== "All" && d.effort   !== activeEffort)   return false;
+    if (showFavOnly && !favorites.includes(d.id))                  return false;
+    return true;
+  });
+}
+
+function renderFilters() {
+  const catWrap = document.getElementById("category-filters");
+  const effWrap = document.getElementById("effort-filters");
+
+  catWrap.innerHTML = categories.map(c => `
+    <button class="filter-btn ${activeCategory === c ? "active" : ""}" data-cat="${c}">${c}</button>
+  `).join("");
+
+  effWrap.innerHTML = efforts.map(e => `
+    <button class="filter-btn effort-${e.toLowerCase()} ${activeEffort === e ? "active" : ""}" data-eff="${e}">${e}</button>
+  `).join("");
+
+  catWrap.querySelectorAll(".filter-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      activeCategory = btn.dataset.cat;
+      renderFilters();
+      renderCards();
     });
-  } catch (err) {
-    // categories are optional, fail silently
-  }
-}
-
-function filterByCategory(category) {
-  document.querySelectorAll(".cat-btn").forEach((btn) => {
-    btn.classList.toggle("active", btn.dataset.category === category);
   });
 
-  if (category === "all") {
-    renderProducts(products);
-  } else {
-    renderProducts(products.filter((p) => p.category === category));
-  }
+  effWrap.querySelectorAll(".filter-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      activeEffort = btn.dataset.eff;
+      renderFilters();
+      renderCards();
+    });
+  });
 }
 
-// Set up the "All" button listener
-document.querySelector('[data-category="all"]').addEventListener("click", () => {
-  filterByCategory("all");
-});
+function renderCards() {
+  const grid  = document.getElementById("dinner-grid");
+  const count = document.getElementById("result-count");
+  const list  = filteredDinners();
 
-function formatPrice(product) {
-  if (product.currency === "SEK") {
-    return `${product.price.toLocaleString()} SEK`;
-  }
-  return `$${product.price.toFixed(2)}`;
-}
+  count.textContent = `${list.length} dinner${list.length !== 1 ? "s" : ""}`;
 
-function renderProducts(list) {
-  productsEl.innerHTML = "";
   if (list.length === 0) {
-    productsEl.innerHTML = '<div class="loading">No products found.</div>';
+    grid.innerHTML = `<p class="empty">No dinners match your filters.</p>`;
     return;
   }
-  list.forEach((product) => {
-    const card = document.createElement("div");
-    card.className = "product-card";
-    card.innerHTML = `
-      <img src="${product.image}" alt="${product.title}">
-      <h3>${product.title}</h3>
-      <div class="price">${formatPrice(product)}</div>
-      <button class="add-btn">Add to Cart</button>
+
+  grid.innerHTML = list.map(d => {
+    const isFav = favorites.includes(d.id);
+    return `
+      <div class="card">
+        <div class="card-emoji">${d.emoji}</div>
+        <div class="card-body">
+          <h3 class="card-title">${d.name}</h3>
+          <div class="card-tags">
+            <span class="tag tag-category">${d.category}</span>
+            <span class="tag tag-effort ${d.effort.toLowerCase()}">${d.effort}</span>
+          </div>
+        </div>
+        <button class="fav-btn ${isFav ? "active" : ""}" data-id="${d.id}" title="${isFav ? "Remove favorite" : "Add to favorites"}">
+          ${isFav ? "♥" : "♡"}
+        </button>
+      </div>
     `;
-    card.querySelector("img").addEventListener("click", () => showDetail(product));
-    card.querySelector("h3").addEventListener("click", () => showDetail(product));
-    card.querySelector(".add-btn").addEventListener("click", (e) => {
-      e.stopPropagation();
-      addToCart(product);
-    });
-    productsEl.appendChild(card);
+  }).join("");
+
+  grid.querySelectorAll(".fav-btn").forEach(btn => {
+    btn.addEventListener("click", () => toggleFavorite(Number(btn.dataset.id)));
   });
 }
 
-// Product detail modal
-function showDetail(product) {
-  modalBody.innerHTML = `
-    <div class="modal-detail">
-      <img src="${product.image}" alt="${product.title}">
-      <span class="category">${product.category}</span>
-      <h2>${product.title}</h2>
-      <div class="price">${formatPrice(product)}</div>
-      <p>${product.description}</p>
-      <button class="add-btn">Add to Cart</button>
+function surpriseMe() {
+  const list = filteredDinners();
+  if (list.length === 0) return;
+
+  const picked = list[Math.floor(Math.random() * list.length)];
+  const modal  = document.getElementById("modal");
+  const box    = document.getElementById("modal-content");
+
+  box.innerHTML = `
+    <div class="modal-emoji">${picked.emoji}</div>
+    <h2>${picked.name}</h2>
+    <div class="card-tags" style="justify-content:center;margin-top:0.5rem">
+      <span class="tag tag-category">${picked.category}</span>
+      <span class="tag tag-effort ${picked.effort.toLowerCase()}">${picked.effort}</span>
     </div>
+    <p class="modal-sub">Tonight's dinner is decided!</p>
+    <button id="modal-close" class="close-btn">Got it!</button>
   `;
-  modalBody.querySelector(".add-btn").addEventListener("click", () => {
-    addToCart(product);
+
+  modal.classList.remove("hidden");
+  document.getElementById("modal-close").addEventListener("click", () => {
     modal.classList.add("hidden");
   });
-  modal.classList.remove("hidden");
 }
 
-modalClose.addEventListener("click", () => modal.classList.add("hidden"));
-modal.addEventListener("click", (e) => {
-  if (e.target === modal) modal.classList.add("hidden");
-});
+document.addEventListener("DOMContentLoaded", () => {
+  renderFilters();
+  renderCards();
 
-// Cart logic
-function addToCart(product) {
-  const existing = cart.find((item) => item.id === product.id);
-  if (existing) {
-    existing.qty += 1;
-  } else {
-    cart.push({ id: product.id, title: product.title, price: product.price, image: product.image, currency: product.currency || "USD", qty: 1 });
-  }
-  saveCart();
-}
+  document.getElementById("surprise-btn").addEventListener("click", surpriseMe);
 
-function removeFromCart(productId) {
-  cart = cart.filter((item) => item.id !== productId);
-  saveCart();
-}
-
-function updateQty(productId, delta) {
-  const item = cart.find((item) => item.id === productId);
-  if (!item) return;
-  item.qty += delta;
-  if (item.qty <= 0) {
-    removeFromCart(productId);
-    return;
-  }
-  saveCart();
-}
-
-function saveCart() {
-  localStorage.setItem("cart", JSON.stringify(cart));
-  renderCart();
-}
-
-function renderCart() {
-  const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
-  const totalPrice = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-  cartCountEl.textContent = totalItems;
-  cartTotalEl.textContent = totalPrice.toFixed(2);
-
-  if (cart.length === 0) {
-    cartItemsEl.innerHTML = "<p>Your cart is empty.</p>";
-    return;
-  }
-
-  cartItemsEl.innerHTML = cart
-    .map(
-      (item) => `
-    <div class="cart-item">
-      <img src="${item.image}" alt="${item.title}">
-      <div class="cart-item-info">
-        <h4>${item.title}</h4>
-        <div>${item.currency === "SEK" ? (item.price * item.qty).toLocaleString() + " SEK" : "$" + (item.price * item.qty).toFixed(2)}</div>
-        <div class="cart-item-controls">
-          <button data-id="${item.id}" data-action="minus">-</button>
-          <span>${item.qty}</span>
-          <button data-id="${item.id}" data-action="plus">+</button>
-        </div>
-      </div>
-    </div>
-  `
-    )
-    .join("");
-
-  cartItemsEl.querySelectorAll("[data-action]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const id = Number(btn.dataset.id);
-      const delta = btn.dataset.action === "plus" ? 1 : -1;
-      updateQty(id, delta);
-    });
+  document.getElementById("modal").addEventListener("click", e => {
+    if (e.target === document.getElementById("modal")) {
+      document.getElementById("modal").classList.add("hidden");
+    }
   });
-}
 
-// Cart open/close
-cartToggle.addEventListener("click", () => cartOverlay.classList.remove("hidden"));
-cartClose.addEventListener("click", () => cartOverlay.classList.add("hidden"));
-cartOverlay.addEventListener("click", (e) => {
-  if (e.target === cartOverlay) cartOverlay.classList.add("hidden");
+  document.getElementById("fav-toggle").addEventListener("change", e => {
+    showFavOnly = e.target.checked;
+    renderCards();
+  });
 });
-
-// Init
-renderCart();
-loadCategories();
-loadProducts();
